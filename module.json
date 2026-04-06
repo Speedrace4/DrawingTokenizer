@@ -10,9 +10,9 @@
 	},
 	"authors": [
 		{
-			"name": "KayelGee",
-			"url": "https://github.com/KayelGee",
-			"discord": "KayelGee#5241"
+			"name": "Speedrace4",
+			"url": "https://github.com/Speedrace4",
+			"discord": "wow2"
 		}
 	],
 	"scripts": [
@@ -29,7 +29,7 @@
 	],
 	"socket": true,
 	"url": "https://github.com/KayelGee/DrawingTokenizer",
-  "manifest": "https://raw.githubusercontent.com/KayelGee/DrawingTokenizer/master/module.json",
-  "download": "https://github.com/KayelGee/DrawingTokenizer/releases/download/v2.1.2/v2.1.2.zip",
-  "readme": "https://github.com/KayelGee/DrawingTokenizer/blob/v2.1.2/README.md"
+  "manifest": "https://raw.githubusercontent.com/Speedrace4/DrawingTokenizer/master/module.json",
+  "download": "https://github.com/Speedrace4/DrawingTokenizer/releases/download/v2.1.2/v2.1.2.zip",
+  "readme": "https://github.com/Speedrace4/DrawingTokenizer/blob/v2.1.2/README.md"
 }

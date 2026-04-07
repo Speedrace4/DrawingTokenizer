@@ -131,19 +131,14 @@
 		 * Hook into the Drawing toolbar and add a button for conversion of drawings
 		 */
 		static _getControlButtons(controls){
-			for (let i = 0; i < controls.length; i++) {
-				if(controls[i].name === "drawings"){
-					controls[i].tools.push({
-						name: "DTtoImage",
-						title: game.i18n.localize("DRAWINGTOKENIZER.ConvertToImage"),
-						icon: "fas fa-image",
-						visible: game.user.isGM,
-						onClick: () => DrawingTokenizer._convertDrawingDialog(),
-						button: true
-					  });
-				};
-				
-			}
+			controls.drawings.tools.drawingTokenizer = {
+				name: "DTtoImage",
+				title: game.i18n.localize("DRAWINGTOKENIZER.ConvertToImage"),
+				icon: "fas fa-image",
+				visible: game.user.isGM,
+				onClick: () => DrawingTokenizer._convertDrawingDialog(),
+				button: true
+			  };
 			console.log("DrawingTokenizer | Tool added.");
 		}
 

@@ -136,7 +136,7 @@
 				title: game.i18n.localize("DRAWINGTOKENIZER.ConvertToImage"),
 				icon: "fas fa-image",
 				visible: game.user.isGM,
-				onClick: () => DrawingTokenizer._convertDrawingDialog(),
+				onChange: () => DrawingTokenizer._convertDrawingDialog(),
 				button: true
 			  };
 			console.log("DrawingTokenizer | Tool added.");

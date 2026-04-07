@@ -30,6 +30,6 @@
 	"socket": true,
 	"url": "https://github.com/Speedrace4/DrawingTokenizer",
   "manifest": "https://raw.githubusercontent.com/Speedrace4/DrawingTokenizer/master/module.json",
-  "download": "https://github.com/KayelGee/DrawingTokenizer/releases/download/v2.1.2/v2.1.2.zip",
+  "download": "https://github.com/Speedrace4/DrawingTokenizer/releases/download/1.1.0/DrawingTokenizer-1.1.0.zip",
   "readme": "https://github.com/Speedrace4/DrawingTokenizer/blob/v2.1.2/README.md"
 }

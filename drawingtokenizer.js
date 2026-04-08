@@ -19,33 +19,42 @@
         /**
          * Convert the selected drawings to an image
          */
-        static async convertDrawing(filename, drawings, type, quality) {
-            const container = new PIXI.Container();
-            const savedGridVisibility = canvas.grid.visible;
-
-            canvas.grid.visible = false;
-
-            for (let drawing of drawings) {
-                // Ensure we are grabbing the graphics representation
-                const clone = drawing.shape.clone();
-                clone.transform.copyFrom(drawing.transform);
-                container.addChild(clone);
-            }
-
-            const ext = type.split('/')[1];
-            if (!filename.endsWith(`.${ext}`)) filename += `.${ext}`;
-
-            try {
-                const blob = await DrawingTokenizer.getContainerBlob(container, type, quality);
-                await DrawingTokenizer.uploadToFoundry(blob, filename);
-            } catch (err) {
-                ui.notifications.error("DrawingTokenizer | Conversion failed.");
-                console.error(err);
-            } finally {
-                canvas.grid.visible = savedGridVisibility;
-                container.destroy({ children: true });
-            }
-        }
+		static async convertDrawing(filename, drawings, type, quality) {
+		    const container = new PIXI.Container();
+		    const savedGridVisibility = canvas.grid.visible;
+		
+		    // Hide the grid for the render
+		    canvas.grid.visible = false;
+		
+		    for (let drawing of drawings) {
+		        // Use the shape if available, or the drawing itself
+		        const source = drawing.shape || drawing;
+		        const clone = source.clone();
+		
+		        // Manual transform assignment (more stable than copyFrom)
+		        clone.x = drawing.x;
+		        clone.y = drawing.y;
+		        clone.rotation = drawing.rotation || 0;
+		        clone.scale.set(drawing.scale?.x ?? 1, drawing.scale?.y ?? 1);
+		        
+		        container.addChild(clone);
+		    }
+		
+		    // Append extension
+		    const ext = type.split('/')[1];
+		    if (!filename.endsWith(`.${ext}`)) filename += `.${ext}`;
+		
+		    try {
+		        const blob = await DrawingTokenizer.getContainerBlob(container, type, quality);
+		        await DrawingTokenizer.uploadToFoundry(blob, filename);
+		    } catch (err) {
+		        ui.notifications.error("DrawingTokenizer | Conversion failed.");
+		        console.error(err);
+		    } finally {
+		        canvas.grid.visible = savedGridVisibility;
+		        container.destroy({ children: true });
+		    }
+		}
 
         static async getContainerBlob(container, type, quality) {
             const renderer = canvas.app.renderer;

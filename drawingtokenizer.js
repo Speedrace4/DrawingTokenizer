@@ -87,20 +87,28 @@
 		/**
 		 * Hook into the Drawing toolbar and add a button for conversion of drawings
 		 */
-		static _getControlButtons(controls){
-			const drawingControls = controls.find(c => c.name === "drawings");
+		static _getControlButtons(controls) {
+            // V13 uses an Object (`controls.drawings`). V12 uses an Array (`controls.find`)
+            const drawingControls = controls.drawings || (Array.isArray(controls) ? controls.find(c => c.name === "drawings") : null);
+            
             if (!drawingControls) return;
 
-			drawingControls.tools.push({
-				name: "DTtoImage",
-				title: game.i18n.localize("DRAWINGTOKENIZER.ConvertToImage"),
-				icon: "fas fa-image",
-				visible: game.user.isGM,
-				onChange: () => DrawingTokenizer._convertDrawingDialog(),
-				button: true
-			  });
-			console.log("DrawingTokenizer | Tool added.");
-		}
+            const toolDef = {
+                name: "drawingTokenizer",
+                title: "Convert Drawings to Image",
+                icon: "fas fa-file-image",
+                visible: game.user.isGM,
+                onClick: () => DrawingTokenizer._convertDrawingDialog(),
+                button: true 
+            };
+
+            // V13 uses an Object for tools. V12 uses an Array.
+            if (Array.isArray(drawingControls.tools)) {
+                drawingControls.tools.push(toolDef);
+            } else {
+                drawingControls.tools.drawingTokenizer = toolDef;
+            }
+        }
 
 		/**
 		 * Present the user with a dialog to convert a drawing to an image.

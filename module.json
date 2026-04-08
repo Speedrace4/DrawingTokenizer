@@ -2,7 +2,7 @@
 	"id": "DrawingTokenizer",
 	"title": "DrawingTokenizer",
 	"description": "Allows to convert one or multiple drawings into a image.",
-	"version": "2.1.2",
+	"version": "1.0.0",
 	"compatibility" :{
 		"minimum": 10,	
 		"verified": "10.286",
